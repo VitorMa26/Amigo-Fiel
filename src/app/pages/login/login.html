@@ -1,25 +1,51 @@
-<div class="card vw-100 m-auto mt-5" style="max-width: 520px;"> 
-    <div class="card-body">
-        <h4 class="card-title">Login</h4>
-        <form action="">
+<div class="card vw-100 m-auto mt-5" style="max-width: 520px">
+  <div class="card-body">
+    <h4 class="card-title">Login</h4>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          class="form-control"
+          placeholder="Digite o seu email"
+          formControlName="email"
+        />
+        @if (email?.invalid && (email?.dirty || email?.touched)) {
+          <div class="alert alert-danger">
+            @if (email?.hasError('required')) {
+              <div>Email é obrigatorio.</div>
+            }
+            @if (email?.hasError('email')) {
+              <div>Email deve ser valido.</div>
+            }
+            @if (email?.hasError('serverError')) {
+              <div>Usuário ou senha inválidos</div>
+            }
+          </div>
+        }
+      </div>
 
+      <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input
+          type="password"
+          name="senha"
+          id="senha"
+          class="form-control"
+          placeholder="Digite a sua senha"
+          formControlName="password"
+        />
+        <small id="helpId" class="text-body-secondary"></small>
+      </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" name="email" id="email" class="form-control" placeholder="Digite o seu email" />
-                
-            </div>
-
-            <div class="mb-3">
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite a sua senha" />
-                <small id="helpId" class="text-body-secondary"></small>
-            </div>
-
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary w-100">Entrar</button>
-            </div>
-
-        </form>
-    </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+          Entrar
+        </button>
+      </div>
+    </form>
+    <p>{{ loginForm.errors }}</p>
+  </div>
 </div>
