@@ -1,20 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Pet } from '../../services/pet';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-pet-list',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './pet-list.html',
   styleUrl: './pet-list.css',
 })
 export class PetList implements OnInit {
   private petService = inject(Pet);
-  public pet: any[] = [];
+  public pets: any[] = [];
 
   ngOnInit(): void {
     this.petService.getAll().subscribe({
       next: (res) => {
-        this.pet = res;
+        this.pets = res;
       },
     });
   }

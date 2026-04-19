@@ -1,110 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amigo fiel</title>
-</head>
-
-<body>
-    <div class="filters">
-        <input type="text" placeholder="Buscar...">
-        <label for="especie">Escolha sua especie</label>
-        <select name="especie" id="especie">
-            <option value="todos">Todos
-            </option>
-            <option value="viralata">Viralata
-            </option>
-            <option value="papagaio">Papagaio
-            </option>
-            <option value="tartaruga">Tartaruga</option>
-        </select>
-        <label for="porte">Escolha o porte</label>
-        <select name="porte" id="porte">
-            <option value="todos">Todos
-            </option>
-            <option value="pequeno">Pequeno
-            </option>
-            <option value="medio">Medio
-            </option>
-            <option value="grande">Grande</option>
-        </select>
-    </div>
-    <ul class="grid-container">
-        <li class="list-item">
-            <h2>osvaldo</h2>
-            <h3>viralata</h3>
-            <h4>0.6</h4>
-            <h5>medio</h5>
-            <span>Adotado</span>
-            <p>Um cachorro docil e carinhoso</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        </li>
-        <li class="list-item">
-            <h2>linda</h2>
-            <h3>papagaio</h3>
-            <h4>0.4</h4>
-            <h5>pequeno</h5>
-            <span>Adotado</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        </li>
-        <li class="list-item">
-            <h2>jack</h2>
-            <h3>tartaruga</h3>
-            <h4>40</h4>
-            <h5>pequeno</h5>
-            <span>Adotado</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elitcsssssssssssss</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        </li>
-        <li class="list-item">
-            <h2>malfoi</h2>
-            <h3>gato</h3>
-            <h4>0.4</h4>
-            <h5>medio</h5>
-            <span>Adotado</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elitfdsfsdfdsvdfsfs</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        <li class="list-item">
-            <h2>karen</h2>
-            <h3>matraca</h3>
-            <h4>0.2</h4>
-            <h5>pequeno</h5>
-            <span>Não Adotado</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elitfdfsdfdsfsd</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        </li>
-        <li class="list-item">
-            <h2>maluco</h2>
-            <h3>coelho</h3>
-            <h4>0.3</h4>
-            <h5>pequeno</h5>
-            <span>Adotado</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elitddddd</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        </li>
-        <li class="list-item">
-            <h2>fé</h2>
-            <h3>arara azul</h3>
-            <h4>0.1</h4>
-            <h5>medio </h5>
-            <span>NãoAdotado</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        </li>
-        <li class="list-item">
-            <h2>mec</h2>
-            <h3>cachorro</h3>
-            <h4>0.2</h4>
-            <h5>grande</h5>
-            <span>Não Adotado</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-            <button id="btn-adotar" type="button">Quero adotar</button>
-        </li>
-    </ul>
-
-</body>
-
-</html>
+<div class="filters">
+  <input type="text" placeholder="Buscar..." />
+  <label for="especie">Escolha sua especie</label>
+  <select name="especie" id="especie">
+    <option value="todos">Todos</option>
+    <option value="viralata">Viralata</option>
+    <option value="papagaio">Papagaio</option>
+    <option value="tartaruga">Tartaruga</option>
+  </select>
+  <label for="porte">Escolha o porte</label>
+  <select name="porte" id="porte">
+    <option value="todos">Todos</option>
+    <option value="pequeno">Pequeno</option>
+    <option value="medio">Medio</option>
+    <option value="grande">Grande</option>
+  </select>
+</div>
+<ul class="grid-container">
+  @for (pet of pets; track $index) {
+    <li class="list-item card">
+      <h2 class="card-title">{{ pet.name }}</h2>
+      <h3 class="card-subtitle text-body-secondary">{{ pet.specie }}</h3>
+      <h4>{{ pet.size }}</h4>
+      <h5>{{ pet.breed }}</h5>
+      <span class="badge rounded-pill" [ngClass]="pet.status ? 'bg-primary' : 'bg-secondary'">
+        {{ pet.status ? 'Adotado' : 'Disponível' }}
+      </span>
+      <p class="card-text">{{ pet.description }}</p>
+      <button id="btn-adotar" type="button" class="btn btn-primary">Quero adotar</button>
+    </li>
+  }
+</ul>
