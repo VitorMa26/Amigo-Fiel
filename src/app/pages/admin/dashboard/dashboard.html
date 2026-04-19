@@ -1,6 +1,6 @@
-<button id="btn-cadastro" type="button">Cadastrar Pet</button>
+<a id="btn-cadastro" type="button" class="btn btn-primary" href="/admin/petForm">Cadastrar Pet</a>
 
-<table id="tabela">
+<table id="tabela" class="table table-striped">
   <thead>
     <tr>
       <th>Nome</th>
@@ -13,23 +13,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Osvaldo</td>
-      <td>Viralata</td>
-      <td>0.2</td>
-      <td>Grande</td>
-      <td>Adotado</td>
-      <td>Editar</td>
-      <td>Excluir</td>
-    </tr>
-    <tr>
-      <td>Patricia</td>
-      <td>Gata</td>
-      <td>0.2</td>
-      <td>Pequeno</td>
-      <td>Adotado</td>
-      <td>Editar</td>
-      <td>Excluir</td>
-    </tr>
+    @for (pet of pets; track $index) {
+      <tr>
+        <td>{{ pet.name }}</td>
+        <td>{{ pet.species }}</td>
+        <td>{{ pet.age }}</td>
+        <td>{{ pet.size }}</td>
+        <td>{{ pet.status }}</td>
+        <td>Editar</td>
+        <td>Excluir</td>
+      </tr>
+    }
   </tbody>
 </table>

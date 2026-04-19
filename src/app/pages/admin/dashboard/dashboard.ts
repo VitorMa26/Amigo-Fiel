@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Pet } from '../../../services/pet';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,4 +7,15 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard {}
+export class Dashboard implements OnInit {
+  private petService = inject(Pet);
+  public pets: any[] = [];
+
+  ngOnInit(): void {
+    this.petService.getAll().subscribe({
+      next: (res) => {
+        this.pets = res;
+      },
+    });
+  }
+}

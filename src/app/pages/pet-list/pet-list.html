@@ -19,9 +19,9 @@
   @for (pet of pets; track $index) {
     <li class="list-item card">
       <h2 class="card-title">{{ pet.name }}</h2>
-      <h3 class="card-subtitle text-body-secondary">{{ pet.specie }}</h3>
-      <h4>{{ pet.size }}</h4>
-      <h5>{{ pet.breed }}</h5>
+      <h3 class="card-subtitle text-body-secondary">{{ pet.species }}</h3>
+      <h4>{{ pet.age }}</h4>
+      <h5>{{ pet.size }}</h5>
       <span class="badge rounded-pill" [ngClass]="pet.status ? 'bg-primary' : 'bg-secondary'">
         {{ pet.status ? 'Adotado' : 'Disponível' }}
       </span>
