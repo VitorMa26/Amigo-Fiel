@@ -1,18 +1,18 @@
 <div class="filters">
   <input type="text" placeholder="Buscar..." (input)="filterResults()" [(ngModel)]="nameFilter" />
   <label for="species">Escolha a especie</label>
-  <select name="species" id="species" [(ngModel)]="specieFilter">
-    <option value="todos">Todos</option>
-    <option value="viralata">Viralata</option>
-    <option value="papagaio">Papagaio</option>
-    <option value="tartaruga">Tartaruga</option>
+  <select name="species" id="species" (change)="filterResults()" [(ngModel)]="specieFilter">
+    <option value="Todos">Todos</option>
+    <option value="Cachorro">Cachorro</option>
+    <option value="Gato">Gato</option>
+    <option value="Ave">Ave</option>
   </select>
   <label for="size">Escolha o size</label>
-  <select name="size" id="size">
-    <option value="todos">Todos</option>
-    <option value="pequeno">Pequeno</option>
-    <option value="medio">Medio</option>
-    <option value="grande">Grande</option>
+  <select name="size" id="size" (change)="filterResults()" [(ngModel)]="sizeFilter">
+    <option value="Todos">Todos</option>
+    <option value="Pequeno">Pequeno</option>
+    <option value="Médio">Médio</option>
+    <option value="Grande">Grande</option>
   </select>
 </div>
 <section>

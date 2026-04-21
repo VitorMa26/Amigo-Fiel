@@ -15,8 +15,9 @@ export class PetList implements OnInit {
   pets = signal<PetModel[]>([]);
   loading = signal(true);
   nameFilter = '';
-  specieFilter = 'todos';
+  specieFilter = signal('Todos');
   filteredList = signal<PetModel[]>([]);
+  sizeFilter = signal('Todos');
 
   ngOnInit(): void {
     this.petService.getAll().subscribe({
@@ -29,12 +30,22 @@ export class PetList implements OnInit {
   }
 
   filterResults() {
-    const newList = this.pets().filter((item) =>
+    let newList = this.pets().filter((item) =>
       item.name.toLowerCase().includes(this.nameFilter.toLowerCase()),
     );
-    this.filteredList.set(newList);
+
     if (this.nameFilter.length == 0) {
-      this.filteredList.set(this.pets());
+      newList = this.pets();
     }
+
+    if (this.specieFilter() !== 'Todos') {
+      newList = newList.filter((item) => item.species == this.specieFilter());
+    }
+
+    if (this.sizeFilter() !== 'Todos') {
+      newList = newList.filter((item) => item.size == this.sizeFilter());
+    }
+
+    this.filteredList.set(newList);
   }
 }
