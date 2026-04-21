@@ -1,14 +1,14 @@
 <div class="filters">
-  <input type="text" placeholder="Buscar..." />
-  <label for="especie">Escolha sua especie</label>
-  <select name="especie" id="especie">
+  <input type="text" placeholder="Buscar..." (input)="filterResults()" [(ngModel)]="nameFilter" />
+  <label for="species">Escolha a especie</label>
+  <select name="species" id="species" [(ngModel)]="specieFilter">
     <option value="todos">Todos</option>
     <option value="viralata">Viralata</option>
     <option value="papagaio">Papagaio</option>
     <option value="tartaruga">Tartaruga</option>
   </select>
-  <label for="porte">Escolha o porte</label>
-  <select name="porte" id="porte">
+  <label for="size">Escolha o size</label>
+  <select name="size" id="size">
     <option value="todos">Todos</option>
     <option value="pequeno">Pequeno</option>
     <option value="medio">Medio</option>
@@ -27,7 +27,7 @@
     <div class="alert alert-info">Nenhum pet encontrado</div>
   } @else {
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      @for (pet of pets(); track $index) {
+      @for (pet of filteredList(); track $index) {
         <app-pet-card [pet]="pet"></app-pet-card>
       }
     </div>
