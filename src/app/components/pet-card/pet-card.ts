@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { PetModel } from '../../models/pets';
 
 @Component({
   selector: 'app-pet-card',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './pet-card.html',
   styleUrl: './pet-card.css',
 })
-export class PetCard {}
+export class PetCard {
+  pet = input.required<PetModel>();
+}
