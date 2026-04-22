@@ -1,0 +1,35 @@
+<div class="filters">
+  <input type="text" placeholder="Buscar..." (input)="filterResults()" [(ngModel)]="nameFilter" />
+  <label for="species">Escolha a especie</label>
+  <select name="species" id="species" (change)="filterResults()" [(ngModel)]="specieFilter">
+    <option value="Todos">Todos</option>
+    <option value="Cachorro">Cachorro</option>
+    <option value="Gato">Gato</option>
+    <option value="Ave">Ave</option>
+  </select>
+  <label for="size">Escolha o size</label>
+  <select name="size" id="size" (change)="filterResults()" [(ngModel)]="sizeFilter">
+    <option value="Todos">Todos</option>
+    <option value="Pequeno">Pequeno</option>
+    <option value="Médio">Médio</option>
+    <option value="Grande">Grande</option>
+  </select>
+</div>
+<section>
+  <h2 class="mb-3">Pets</h2>
+  @if (loading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" roles="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+    </div>
+  } @else if (pets().length === 0) {
+    <div class="alert alert-info">Nenhum pet encontrado</div>
+  } @else {
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      @for (pet of filteredList(); track $index) {
+        <app-pet-card [pet]="pet"></app-pet-card>
+      }
+    </div>
+  }
+</section>

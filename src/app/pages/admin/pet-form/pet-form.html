@@ -1,0 +1,33 @@
+<form [formGroup]="petForm" (ngSubmit)="enviarDados()" class="container mt-4">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome</label>
+    <input type="text" class="form-control" id="name" formControlName="name" />
+  </div>
+  <div class="mb-3">
+    <label for="species" class="form-label">Especie</label>
+    <select type="text" class="form-control" id="species" formControlName="species">
+      <option value="cachorro">Cachorro</option>
+      <option value="gato">Gato</option>
+      <option value="ave">Ave</option>
+      <option value="roedor">Roedor</option>
+      <option value="outro">Outro</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="age" class="form-label">Idade</label>
+    <input type="number" class="form-control" id="age" formControlName="age" />
+  </div>
+  <div class="mb-3">
+    <label for="size" class="form-label">Porte</label>
+    <select type="text" class="form-control" id="size" formControlName="size">
+      <option value="pequeno">Pequeno</option>
+      <option value="medio">Médio</option>
+      <option value="grande">Grande</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Descrição</label>
+    <textarea id="description" formControlName="description" class="form-control" cols="12"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Criar</button>
+</form>
