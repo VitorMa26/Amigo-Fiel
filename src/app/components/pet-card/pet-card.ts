@@ -9,4 +9,8 @@ import { PetModel } from '../../models/pets';
 })
 export class PetCard {
   pet = input.required<PetModel>();
+
+  handleAdopt() {
+    alert('(99) 99999-9999');
+  }
 }
