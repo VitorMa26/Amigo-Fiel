@@ -1,5 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Pet } from '../../../services/pet';
+import { PetModel } from '../../../models/pets';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,12 +10,13 @@ import { Pet } from '../../../services/pet';
 })
 export class Dashboard implements OnInit {
   private petService = inject(Pet);
-  public pets: any[] = [];
+  public pets = signal<PetModel[]>([]);
 
   ngOnInit(): void {
     this.petService.getAll('').subscribe({
       next: (res) => {
-        this.pets = res;
+        console.log(res);
+        this.pets.set(res);
       },
     });
   }

@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class Pet {
   private http = inject(HttpClient);
-  private apiUrl = 'https://api-senai-angular.vercel.app';
-  private publicUrl = '/api/pets';
+  private apiUrl = 'https://api-senai-angular.vercel.app/api';
+  private publicUrl = '/pets';
   private adminUrl = '/admin/pets';
 
   getAll(queryParams: string): Observable<any> {

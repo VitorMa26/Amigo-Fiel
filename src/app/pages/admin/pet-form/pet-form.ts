@@ -25,6 +25,7 @@ export class PetForm {
 
   onSubmit() {
     if (!this.petForm.valid) {
+      console.log('invalido');
       return;
     }
     const { name, species, age, size, status, description } = this.petForm.getRawValue();
