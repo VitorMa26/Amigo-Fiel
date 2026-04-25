@@ -16,36 +16,33 @@ export class PetList implements OnInit {
   loading = signal(true);
   nameFilter = '';
   specieFilter = signal('Todos');
-  filteredList = signal<PetModel[]>([]);
   sizeFilter = signal('Todos');
 
   ngOnInit(): void {
-    this.petService.getAll().subscribe({
+    this.getPets();
+  }
+
+  getPets() {
+    this.loading.set(true);
+    const nameParam = this.nameFilter.length == 0 ? '' : 'name=' + this.nameFilter;
+    const specieParam =
+      this.specieFilter().length == 0 || this.specieFilter() == 'Todos'
+        ? ''
+        : 'species=' + this.specieFilter();
+    const sizeParam =
+      this.sizeFilter().length == 0 || this.sizeFilter() == 'Todos'
+        ? ''
+        : 'size=' + this.sizeFilter();
+    const buildParams = [nameParam, specieParam, sizeParam].filter((e) => e.length != 0).join('&');
+    const queryParams = buildParams.length == 0 ? '' : '?' + buildParams;
+    this.petService.getAll(queryParams).subscribe({
       next: (res) => {
         this.loading.set(false);
         this.pets.set(res);
-        this.filteredList.set(res);
+      },
+      error: (err) => {
+        this.loading.set(false);
       },
     });
-  }
-
-  filterResults() {
-    let newList = this.pets().filter((item) =>
-      item.name.toLowerCase().includes(this.nameFilter.toLowerCase()),
-    );
-
-    if (this.nameFilter.length == 0) {
-      newList = this.pets();
-    }
-
-    if (this.specieFilter() !== 'Todos') {
-      newList = newList.filter((item) => item.species == this.specieFilter());
-    }
-
-    if (this.sizeFilter() !== 'Todos') {
-      newList = newList.filter((item) => item.size == this.sizeFilter());
-    }
-
-    this.filteredList.set(newList);
   }
 }

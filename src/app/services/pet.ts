@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,8 +11,14 @@ export class Pet {
   private publicUrl = '/api/pets';
   private adminUrl = '/admin/pets';
 
-  getAll(): Observable<any> {
-    return this.http.get(this.apiUrl + this.publicUrl);
+  getAll(queryParams: string): Observable<any> {
+    return this.http.get(this.apiUrl + this.publicUrl + queryParams, {
+      headers: new HttpHeaders({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache',
+        Expires: '0',
+      }),
+    });
   }
 
   create(pet: any): Observable<any> {

@@ -12,7 +12,7 @@ export class Dashboard implements OnInit {
   public pets: any[] = [];
 
   ngOnInit(): void {
-    this.petService.getAll().subscribe({
+    this.petService.getAll('').subscribe({
       next: (res) => {
         this.pets = res;
       },
