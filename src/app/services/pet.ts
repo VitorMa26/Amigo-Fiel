@@ -24,4 +24,8 @@ export class Pet {
   create(pet: any): Observable<any> {
     return this.http.post(this.apiUrl + this.adminUrl, pet);
   }
+
+  delete(id: number) {
+    return this.http.delete(this.apiUrl + this.adminUrl + `/${id}`);
+  }
 }

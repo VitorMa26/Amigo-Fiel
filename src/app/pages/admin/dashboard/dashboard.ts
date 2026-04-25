@@ -20,4 +20,13 @@ export class Dashboard implements OnInit {
       },
     });
   }
+
+  handleDelete(id: number) {
+    this.petService.delete(id).subscribe({
+      next: () => {
+        const filteredList = this.pets().filter((e) => e.id !== id);
+        this.pets.set(filteredList);
+      },
+    });
+  }
 }
