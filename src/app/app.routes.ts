@@ -14,8 +14,9 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       //admin
-      { path: 'dashboard', component: Dashboard }, //admin/planos
-      { path: 'petForm', component: PetForm }, //admin/planos
+      { path: 'dashboard', component: Dashboard },
+      { path: 'petForm', component: PetForm },
+      { path: 'petForm/:id', component: PetForm },
     ],
   },
 ];

@@ -20,7 +20,11 @@
         <td>{{ pet.age }}</td>
         <td>{{ pet.size }}</td>
         <td>{{ pet.status }}</td>
-        <td>Editar</td>
+        <td>
+          <button class="btn btn-outline-info" (click)="handleEdit(pet.id)">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </td>
         <td>
           <button class="btn btn-danger" (click)="handleDelete(pet.id)">
             <i class="bi bi-trash"></i>

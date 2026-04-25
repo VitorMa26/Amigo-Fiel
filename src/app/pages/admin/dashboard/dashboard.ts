@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Pet } from '../../../services/pet';
 import { PetModel } from '../../../models/pets';
+import { RedirectCommand, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,7 @@ import { PetModel } from '../../../models/pets';
 export class Dashboard implements OnInit {
   private petService = inject(Pet);
   public pets = signal<PetModel[]>([]);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.petService.getAll('').subscribe({
@@ -28,5 +30,10 @@ export class Dashboard implements OnInit {
         this.pets.set(filteredList);
       },
     });
+  }
+
+  handleEdit(id: number) {
+    const route = [`/admin/petForm/${id}`];
+    this.router.navigate(route);
   }
 }

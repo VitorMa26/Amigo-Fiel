@@ -36,5 +36,5 @@
     <label for="description" class="form-label">Descrição</label>
     <textarea id="description" formControlName="description"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Criar</button>
+  <button type="submit" class="btn btn-primary">{{ isEdit() ? 'Salvar' : 'Criar' }}</button>
 </form>

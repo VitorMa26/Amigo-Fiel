@@ -11,6 +11,10 @@ export class Pet {
   private publicUrl = '/pets';
   private adminUrl = '/admin/pets';
 
+  getOne(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + this.publicUrl + `/${id}`);
+  }
+
   getAll(queryParams: string): Observable<any> {
     return this.http.get(this.apiUrl + this.publicUrl + queryParams, {
       headers: new HttpHeaders({
@@ -27,5 +31,9 @@ export class Pet {
 
   delete(id: number) {
     return this.http.delete(this.apiUrl + this.adminUrl + `/${id}`);
+  }
+
+  save(id: string, pet: any): Observable<any> {
+    return this.http.put(this.apiUrl + this.adminUrl + `/${id}`, pet);
   }
 }
